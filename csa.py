@@ -30,13 +30,13 @@ class CSA(nn.Module):
         k = self.K(x)
         q = self.Q(x)
         v = self.V(x)
-        #print(k.size())
+        #print(k[0])
         x = F.relu(torch.bmm(k.transpose(1,2),q))
-        #print(x.size())
+        #print(x[0])
         x = torch.bmm(v,x)/self.sqrt_ks
-        #print(x.size())
+        #print(x[0])
         x = x.view(x.size(0),self.fout,-1)
-        #print(x.size())
+        #print(x[0])
         return x
 
 class CSA_test(nn.Module):
