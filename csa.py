@@ -36,7 +36,7 @@ class CSA(nn.Module):
         x = torch.bmm(v,x)/self.sqrt_ks
         #print(x.size())
         x = x.view(x.size(0),self.fout,-1)
-        print(x.size())
+        #print(x.size())
         return x
 
 class CSA_test(nn.Module):
