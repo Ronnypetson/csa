@@ -19,6 +19,7 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(500, 10)
 
     def forward(self, x):
+        print(x[0])
         x = F.relu(self.csa1(x))
         x = F.relu(self.csa2(x))
         #print(x.size())
