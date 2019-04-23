@@ -24,8 +24,8 @@ class CSA(nn.Module):
         assert x.size(1) == self.fin
         #print(x.size())
         x = x.view(x.size(0),self.fin,-1)
-        k_ = (self.kernel_size-1)*self.dilation
-        new_len = (x.size(-1)+2*self.padding-k_)//self.stride
+        #k_ = (self.kernel_size-1)*self.dilation
+        #new_len = (x.size(-1)+2*self.padding-k_)//self.stride
         #print(new_len)
         k = self.K(x)
         q = self.Q(x)
@@ -35,7 +35,8 @@ class CSA(nn.Module):
         #print(x.size())
         x = torch.bmm(v,x)/self.sqrt_ks
         #print(x.size())
-        x = x.view(x.size(0),self.fout,new_len)
+        x = x.view(x.size(0),self.fout,-1)
+        print(x.size())
         return x
 
 class CSA_test(nn.Module):
