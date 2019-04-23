@@ -19,8 +19,8 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(500, 10)
 
     def forward(self, x):
-        x = F.relu(self.csa1(x))
-        x = F.relu(self.csa2(x))
+        x = F.sigmoid(self.csa1(x))
+        #x = F.relu(self.csa2(x))
         x = x.view(-1,16*784)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)

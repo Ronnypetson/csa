@@ -31,7 +31,7 @@ class CSA(nn.Module):
         q = self.Q(x)
         v = self.V(x)
         #print(k[0])
-        x = F.relu(torch.bmm(k.transpose(1,2),q))
+        x = F.sigmoid(torch.bmm(k.transpose(1,2),q))
         #print(x[0])
         x = torch.bmm(v,x)/self.sqrt_ks
         #print(x[0])
