@@ -8,7 +8,7 @@ import time
 class CSA(nn.Module):
     def __init__(self,fin,fout,kernel_size,stride=1,padding=0,dilation=1):
         super().__init__()
-        self.sqrt_ks = torch.tensor(np.sqrt(kernel_size))
+        self.sqrt_ks = torch.tensor(np.sqrt(kernel_size)).cuda()
         self.fin = fin
         self.fout = fout
         self.kernel_size = kernel_size
