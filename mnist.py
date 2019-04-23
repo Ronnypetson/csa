@@ -14,7 +14,7 @@ class Net(nn.Module):
         #self.csa1 = nn.Conv2d(1,8,3)
         self.csa1 = CSA(1,8,783)
         #self.csa2 = nn.Conv2d(8,8,3)
-        self.csa2 = CSA(8,8,783)
+        #self.csa2 = CSA(8,8,783)
         self.fc1 = nn.Linear(8*784, 500)
         self.fc2 = nn.Linear(500, 10)
 
