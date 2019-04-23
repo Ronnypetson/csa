@@ -21,7 +21,7 @@ class Net(nn.Module):
     def forward(self, x):
         x = F.relu(self.csa1(x))
         #print(x[0])
-        x = F.relu(self.csa2(x))
+        #x = F.relu(self.csa2(x))
         #print(x.size())
         x = x.view(-1,8*784)
         x = F.relu(self.fc1(x))
