@@ -7,7 +7,7 @@ import numpy as np
 
 import argparse
 
-from models import *
+#from models import *
 from misc import progress_bar
 from csa import CSA
 from mnist import Net
