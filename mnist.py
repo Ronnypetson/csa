@@ -12,17 +12,15 @@ class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
         #self.csa1 = nn.Conv2d(1,4,3,padding=1)
-        self.csa1 = CSA(1,4,3)
+        self.csa1 = CSA(1,2,783)
         #self.csa2 = nn.Conv2d(8,8,3)
-        #self.csa2 = CSA(8,8,783)
+        self.csa2 = CSA(2,4,783)
         self.fc1 = nn.Linear(4*784, 500)
         self.fc2 = nn.Linear(500, 10)
 
     def forward(self, x):
         x = F.relu(self.csa1(x))
-        #print(x[0])
-        #x = F.relu(self.csa2(x))
-        #print(x.size())
+        x = F.relu(self.csa2(x))
         x = x.view(-1,4*784)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
