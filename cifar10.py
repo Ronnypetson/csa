@@ -1,6 +1,7 @@
 import torch.optim as optim
 import torch.utils.data
 import torch.backends.cudnn as cudnn
+import torch.nn as nn
 import torchvision
 from torchvision import transforms as transforms
 import numpy as np
