@@ -27,9 +27,9 @@ class CSA(nn.Module):
         #k_ = (self.kernel_size-1)*self.dilation
         #new_len = (x.size(-1)+2*self.padding-k_)//self.stride
         #print(new_len)
-        k = self.K(x)
-        q = self.Q(x)
-        v = self.V(x)
+        k = F.relu(self.K(x))
+        q = F.relu(self.Q(x))
+        v = F.relu(self.V(x))
         #print(k[0])
         x = F.sigmoid(torch.bmm(k.transpose(1,2),q))
         #print(x[0])
