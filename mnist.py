@@ -15,13 +15,13 @@ class Net(nn.Module):
         self.csa1 = CSA(3,32,1023)
         #self.csa2 = nn.Conv2d(16,16,3)
         #self.csa2 = CSA(16,16,783)
-        self.fc1 = nn.Linear(16*1024, 500)
+        self.fc1 = nn.Linear(32*1024, 500)
         self.fc2 = nn.Linear(500, 10)
 
     def forward(self, x):
         x = F.sigmoid(self.csa1(x))
         #x = F.sigmoid(self.csa2(x))
-        x = x.view(-1,16*1024)
+        x = x.view(-1,32*1024)
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return F.log_softmax(x, dim=1)
