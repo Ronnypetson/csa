@@ -19,8 +19,8 @@ def main():
     parser = argparse.ArgumentParser(description="cifar-10 with PyTorch")
     parser.add_argument('--lr', default=0.001, type=float, help='learning rate')
     parser.add_argument('--epoch', default=200, type=int, help='number of epochs tp train for')
-    parser.add_argument('--trainBatchSize', default=100, type=int, help='training batch size')
-    parser.add_argument('--testBatchSize', default=100, type=int, help='testing batch size')
+    parser.add_argument('--trainBatchSize', default=32, type=int, help='training batch size')
+    parser.add_argument('--testBatchSize', default=32, type=int, help='testing batch size')
     parser.add_argument('--cuda', default=torch.cuda.is_available(), type=bool, help='whether cuda is in use')
     args = parser.parse_args()
 
@@ -75,11 +75,11 @@ class Solver(object):
         # self.model = DenseNet169().to(self.device)
         # self.model = DenseNet201().to(self.device)
         # self.model = WideResNet(depth=28, num_classes=10).to(self.device)
-        self.model = Net()
+        self.model = Net().to(self.device)
 
         self.optimizer = optim.Adam(self.model.parameters(), lr=self.lr)
         self.scheduler = optim.lr_scheduler.MultiStepLR(self.optimizer, milestones=[75, 150], gamma=0.5)
-        self.criterion = nn.CrossEntropyLoss().to(self.device)
+        self.criterion = nn.NLLLoss() #nn.CrossEntropyLoss().to(self.device)
 
     def train(self):
         print("train:")
@@ -89,7 +89,7 @@ class Solver(object):
         total = 0
 
         for batch_num, (data, target) in enumerate(self.train_loader):
-            data, target = data.to(self.device), target.to(self.device)
+            data, target = data.to(self.device).float(), target.to(self.device)
             self.optimizer.zero_grad()
             output = self.model(data)
             loss = self.criterion(output, target)
