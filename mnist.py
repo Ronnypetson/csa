@@ -11,17 +11,17 @@ from csa import CSA
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        self.csa1 = nn.Conv2d(3,32,3,padding=1)
-        #self.csa1 = CSA(3,32,3)
+        #self.csa1 = nn.Conv2d(3,32,3,padding=1)
+        self.csa1 = CSA(3,32,3)
         #self.csa2 = nn.Conv2d(32,32,3,padding=1)
         #self.csa2 = CSA(16,16,783)
         self.fc1 = nn.Linear(32*1024, 500)
         self.fc2 = nn.Linear(500, 10)
 
     def forward(self, x):
-        #x = F.sigmoid(self.csa1(x))
-        #x = F.sigmoid(self.csa2(x))
         x = F.relu(self.csa1(x))
+        #x = F.sigmoid(self.csa2(x))
+        #x = F.relu(self.csa1(x))
         #x = F.relu(self.csa2(x))
         x = x.view(-1,32*1024)
         x = F.relu(self.fc1(x))
