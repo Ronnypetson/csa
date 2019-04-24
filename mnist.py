@@ -11,8 +11,8 @@ from csa import CSA
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        #self.csa1 = nn.Conv2d(1,4,3,padding=1)
-        self.csa1 = CSA(3,16,783)
+        self.csa1 = nn.Conv2d(3,16,3,padding=1)
+        #self.csa1 = CSA(3,16,783)
         #self.csa2 = nn.Conv2d(16,16,3)
         #self.csa2 = CSA(16,16,783)
         self.fc1 = nn.Linear(16*1024, 500)
